@@ -129,7 +129,7 @@
       padding: 12px;
       margin: 10px 0;
       border: none;
-      border-radius: 5px;
+      border-radius: 15px;
       background: #1a237e;
       color: #fff;
       font-size: 16px;
@@ -176,7 +176,7 @@
       padding: 12px;
       background: rgba(0, 0, 50, 0.9);
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 15px;
       font-size: 14px;
       cursor: pointer;
       color: #fff;
@@ -245,7 +245,6 @@
 
         <div id="success-message"></div>
      </div>
-  
 <script>
     // Gestion de l'inscription classique
     document.getElementById("signup-btn").addEventListener("click", function () {
@@ -254,6 +253,8 @@
         const password = document.getElementById("password").value;
 
         if (username && email && password) {
+            console.log("Données envoyées :", { username, email, password });  // Debug
+
             // Envoi des données au backend
             fetch("http://localhost:3000/api/register", {
                 method: "POST",
@@ -262,8 +263,12 @@
                 },
                 body: JSON.stringify({ username, email, password })
             })
-            .then(response => response.json())
+            .then(response => {
+                console.log("Réponse du backend :", response);  // Debug
+                return response.json();
+            })
             .then(data => {
+                console.log("Données reçues :", data);  // Debug
                 if (data.success) {
                     // Enregistrer les données dans le stockage local
                     localStorage.setItem("username", username);
@@ -271,7 +276,7 @@
                     localStorage.setItem("password", password);
 
                     alert("Inscription réussie !");
-                    // Redirection vers hack.html
+                    // Redirection vers hack.html après inscription réussie
                     window.location.href = "hack.html";
                 } else {
                     alert("Erreur : " + data.message);
@@ -316,6 +321,5 @@
         window.location.href = "https://discord.com/api/oauth2/authorize?client_id=VOTRE_CLIENT_ID&redirect_uri=VOTRE_REDIRECT_URI&response_type=code&scope=identify%20email";
     });
 </script>
-
 </body>
           </html>
