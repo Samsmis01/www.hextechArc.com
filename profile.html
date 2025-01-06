@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Utilisateur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #2c3e50, #4ca1af);
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+        /* En-tête */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #1e88e5;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.5em;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            padding-top: 60px;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .profile-info {
+            text-align: center;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .profile-info img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .profile-info h2 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .profile-info p {
+            font-size: 1em;
+            margin: 10px 0;
+            color: #bbb;
+        }
+
+        .camera-icon {
+            position: absolute;
+            top: 75%;
+            right: 25%;
+            cursor: pointer;
+            background-color: #444;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .camera-icon:hover {
+            background-color: #1e88e5;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #555;
+            background-color: #222;
+            color: #fff;
+            font-size: 1em;
+        }
+
+        .save-btn {
+            background: #1e88e5;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .save-btn:hover {
+            background: #1565c0;
+        }
+
+        .profile-options {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .option {
+            background: linear-gradient(45deg, #5c6bc0, #1e88e5);
+            border: none;
+            color: #fff;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+
+        .option:hover {
+            background: linear-gradient(45deg, #1e88e5, #5c6bc0);
+        }
+
+        .section-content {
+            display: none;
+            background: #333;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .section-content h3 {
+            font-size: 1.3em;
+            color: #5c6bc0;
+        }
+
+        .section-content p {
+            color: #bbb;
+        }
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f4f4f9;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    #profile-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 3px solid #4caf50;
+        object-fit: cover;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    #profile-photo:hover {
+        transform: scale(1.1);
+    }
+
+    #camera-icon {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 15px;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    #camera-icon:hover {
+        background-color: #45a049;
+        transform: scale(1.1);
+    }
+
+    #file-input {
+        display: none; /* Masquer l'input */
+    }
+
+    .form-container {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    input[type="text, password, email,file"], input[type="file"] {
+        padding: 10px;
+        margin: 5px;
+        font-size: 16px;
+        border-radius: 95px;
+        border: 1px solid #ccc;
+        width: 328px; /* Ajuster la largeur du champ de saisie */
+    }
+body{
+    background-color:lightblue;
+}
+/* Style global de la page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style du bouton de déconnexion spécifique */
+.logout-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: blue; /* Couleur rouge */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px; /* Espacement en haut */
+}
+
+/* Effet au survol du bouton */
+.logout-btn:hover {
+    background-color: #e53935; /* Couleur rouge plus foncée */
+    transform: scale(1.05); /* Effet d'agrandissement */
+}
+
+/* Effet au focus (clic sur le bouton) */
+.logout-btn:focus {
+    outline: none; /* Supprime le contour au clic */
+}
+
+/* Exemple d'autres éléments de la page (si nécessaire) */
+input, textarea, select {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+    </style>
+</head>
+<body>
+  
+    <!-- En-tête -->
+    <header>
+        𝑯𝑬𝑿𝑻𝑬𝑪𝑯
+    </header>
+<h3>This page is under development.
+
+</h3>
+    <div class="profile-container">
+        <!-- Photo de profil -->
+        <div class="profile-info">
+              <img src="https://via.placeholder.com/120" alt="Photo de Profil" id="profile-photo">
+<label for="file-input" id="camera-icon">📷</label>
+<input type="file" id="file-input" accept="image/*">
+            <h2 id="username">Nom d'utilisateur</h2>
+            <p id="email">Email : <span id="user-email">example@example.com</span></p>
+            <p id="phone">Téléphone : <span id="user-phone">0123456789</span></p>
+        </div>
+
+        <!-- Formulaire de modification -->
+        <div class="input-container">
+            <input type="email" id="new-email" placeholder="Nouveau Email">
+        </div>
+        <div class="input-container">
+            <input type="text" id="new-phone" placeholder="Nouveau Téléphone">
+        </div>
+        <div class="input-container">
+            <input type="password" id="new-password" placeholder="Nouveau Mot de Passe">
+        </div>
+        <button onclick="saveProfile()" class="save-btn">Sauvegarder</button>
+    </div>
+
+    <!-- Options du profil -->
+    <div class="profile-options">
+        <button class="option" onclick="toggleSection('confidentialite')">Confidentialité</button>
+        <button class="option" onclick="toggleSection('stockage')">Stockage</button>
+        <button class="option" onclick="toggleSection('apropos')">À propos</button>
+    </div>
+
+    <!-- Sections dynamiques -->
+    <div id="confidentialite" class="section-content">
+        <h3>Confidentialité</h3>
+        <p>Gérez vos paramètres de confidentialité ici.</p>
+    </div>
+    <div id="stockage" class="section-content">
+        <h3>Stockage</h3>
+        <p>Gérez l'espace de stockage utilisé par vos fichiers et messages.</p>
+    </div>
+    <div id="apropos" class="section-content">
+        <h3>À propos</h3>
+        <p>Informations sur l'application et l'utilisateur.</p>
+    </div>
+    <button id="logout-button" class="logout-btn"
+    >Déconnexion</button>
+
+    <script>
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.style.display = section.style.display === "block" ? "none" : "block";
+        }
+
+        function saveProfile() {
+            const email = document.getElementById("new-email").value;
+            const phone = document.getElementById("new-phone").value;
+
+            if (email) document.getElementById("user-email").textContent = email;
+            if (phone) document.getElementById("user-phone").textContent = phone;
+
+            alert("Profil mis à jour !");
+       }
+    const fileInput = document.getElementById('file-input');
+    const profilePhoto = document.getElementById('profile-photo');
+
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                profilePhoto.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    </script>
+</body>
+</html>

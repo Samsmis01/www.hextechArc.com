@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription</title>
+  <style>
+      .g-recaptcha {
+  position: fixed;
+  bottom: 20px;  /* Distance du bas de la page */
+  right: 20px;   /* Distance du bord droit de la page */
+  z-index: 9999; /* Assure que le reCAPTCHA soit au-dessus des autres éléments */
+}
+      /* Style des boutons */
+        .btn {
+            width: 232px;
+            height: 61px;
+            background-color: lightgreen;
+            border: none;
+            border-radius: 100px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            animation: pulse 3s infinite ease-in-out;
+            transition: transform 0.5s ease, background-color 0.5s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.2) rotate(15deg);
+            background-color: royalblue;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 888px lightblue;
+            }
+            50% {
+                box-shadow: 0 0 50px deepskyblue;
+            }
+            100% {
+                box-shadow: 0 0 5px lightblue;
+            }
+        }
+
+        .btn-small {
+            width: 150px;
+            height: 50px;
+            background-color: lightblue;
+            border: none;
+            border-radius: 85px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            animation: pulse-small 3s infinite ease-in-out;
+            transition: transform 0.5s ease, background-color 0.5s ease;
+        }
+
+        .btn-small:hover {
+            transform: scale(1.2) rotate(15deg);
+            background-color: royalblue;
+        }
+
+        @keyframes pulse-small {
+            0% {
+                box-shadow: 0 0 10px lightblue;
+            }
+            50% {
+                box-shadow: 0 0 30px deepskyblue;
+            }
+            100% {
+                box-shadow: 0 0 10px lightblue;
+            }
+        }
+              /* Style pour l'en-tête/logo */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 38px; /* Corrigé : ajustement de la hauteur */
+            padding: 15px 40px;
+            background-color:lightblue; /* Fond blanc */
+            box-shadow: 0 10px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+            color: #007BFF; /* Couleur bleue */
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: left;
+            letter-spacing: 22px; /* Espacement des lettres */
+            z-index: 1000; /* S'assurer que l'en-tête reste au-dessus du contenu */
+        }
+        
+    /* Global Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1a73e8, #4285f4, #0d47a1);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Container Styling */
+    .form-container {
+      background: rgba(0, 0, 50, 0.9);
+      border-radius: 15px;
+      padding: 25px 35px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Heading Styling */
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #1e88e5;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Input Styling */
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      background: #1a237e;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    input:focus {
+      border: 2px solid #42a5f5;
+    }
+
+    /* Button Styling */
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #1e88e5, #1565c0);
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #1565c0, #1e88e5);
+    }
+
+    /* OAuth Buttons */
+    .oauth-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .oauth-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      background: rgba(0, 0, 50, 0.9);
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #fff;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .oauth-button:hover {
+      transform: scale(1.05);
+      background: #3949ab;
+    }
+
+    .oauth-button img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .success-message {
+      text-align: center;
+      margin-top: 10px;
+      color: #4caf50;
+      font-weight: bold;
+    }
+    .btn:hover {
+            transform: scale(1.2) rotate(15deg);
+            background-color: royalblue;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 888px lightblue;
+            }
+            50% {
+                box-shadow: 0 0 50px deepskyblue;
+            }
+            100% {
+                box-shadow: 0 0 5px lightblue;
+            }
+        }
+
+  </style>
+</head>
+<body>
+      <!-- En-tête avec le nom de la compagnie sous forme de logo -->
+    <header>
+        𝑯𝑬𝑿𝑻𝑬𝑪𝑯
+    </header>
+     <div class="form-container">
+        <h2>𝗜𝗡𝗦𝗖𝗥𝗜𝗣𝗧𝗜𝗢𝗡𝗦</h2>
+        <form id="signup-form">
+            <input type="text" id="username" placeholder="Nom d'utilisateur" required>
+            <input type="email" id="email" placeholder="Adresse e-mail" required>
+            <input type="tel" id="phone" placeholder="Numéro de téléphone" required>
+            <button type="button" id="signup-btn">S'inscrire</button>
+        </form>
+
+        <div>
+            <div class="oauth-button" id="gmail-login">
+                <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google">
+                Continuer avec Gmail
+            </div>
+            <div class="oauth-button" id="discord-login">
+                <img src="https://img.icons8.com/color/48/000000/discord-logo.png" alt="Discord">
+                Continuer avec Discord
+            </div>
+        </div>
+
+        <div id="success-message"></div>
+    </div>
+  <script>
+    // Gestion de l'inscription classique
+    document.getElementById("signup-btn").addEventListener("click", function () {
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+
+        if (username && email && phone) {
+            // Envoi des données au backend
+            fetch("http://localhost:3000/api/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, email, phone })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Enregistrer les données dans le stockage local
+                    localStorage.setItem("username", username);
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("phone", phone);
+
+                    alert("Inscription réussie !");
+                    // Redirection vers hack.html
+                    window.location.href = "hack.html";
+                } else {
+                    alert("Erreur : " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("Erreur lors de l'inscription :", error);
+                alert("Une erreur est survenue.");
+            });
+        } else {
+            // Message d'erreur si les champs ne sont pas remplis
+            alert("non mais t'es sérieux ? mdr 😂 Veuillez remplir tous les champs !");
+        }
+    });
+
+    // Préremplir les champs si des données sont déjà stockées
+    window.addEventListener("DOMContentLoaded", function () {
+        const storedUsername = localStorage.getItem("username");
+        const storedEmail = localStorage.getItem("email");
+        const storedPhone = localStorage.getItem("phone");
+
+        if (storedUsername) {
+            document.getElementById("username").value = storedUsername;
+        }
+        if (storedEmail) {
+            document.getElementById("email").value = storedEmail;
+        }
+        if (storedPhone) {
+            document.getElementById("phone").value = storedPhone;
+        }
+    });
+
+    // Gestion OAuth Gmail
+    document.getElementById("gmail-login").addEventListener("click", function () {
+        alert("Connexion via Gmail...");
+        window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?client_id=VOTRE_CLIENT_ID&redirect_uri=VOTRE_REDIRECT_URI&response_type=code&scope=email%20profile";
+    });
+
+    // Gestion OAuth Discord
+    document.getElementById("discord-login").addEventListener("click", function () {
+        alert("Connexion via Discord...");
+        window.location.href = "https://discord.com/api/oauth2/authorize?client_id=VOTRE_CLIENT_ID&redirect_uri=VOTRE_REDIRECT_URI&response_type=code&scope=identify%20email";
+    });
+  </script>
+
+
+</body>
+          </html>
