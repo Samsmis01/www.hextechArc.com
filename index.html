@@ -219,21 +219,17 @@
   </style>
 </head>
 <body>
-      <!-- En-tête avec le nom de la compagnie sous forme de logo -->
+    <!-- En-tête avec le nom de la compagnie sous forme de logo -->
     <header>
         𝑯𝑬𝑿𝑻𝑬𝑪𝑯
     </header>
-     <div class="form-container">
+    <div class="form-container">
         <h2>𝗜𝗡𝗦𝗖𝗥𝗜𝗣𝗧𝗜𝗢𝗡𝗦</h2>
         <form id="signup-form">
             <input type="text" id="username" placeholder="Nom d'utilisateur" required>
             <input type="email" id="email" placeholder="Adresse e-mail" required>
-            <input type="password" id="password" placeholder="mot de passe" required>
-            <form action="hack.html">
-   <a href"https://samsmis01.github.io/Arcane.com/"> <button class="btn" id="signup-btn">S'inscrire</button>
-   </a>
-            </form>
-        
+            <input type="password" id="password" placeholder="Mot de passe" required>
+            <button type="button" class="btn" id="signup-btn">S'inscrire</button>
         </form>
 
         <div>
@@ -248,84 +244,39 @@
         </div>
 
         <div id="success-message"></div>
-     </div>
-<script>
-    // Gestion de l'inscription classique
-    document.getElementById("signup-btn").addEventListener("click", function () {
-        const username = document.getElementById("username").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+    </div>
 
-        if (username && email && password) {
-            console.log("Données envoyées :", { username, email, password });  // Debug
+    <script>
+        // Gestion de l'inscription classique
+        document.getElementById("signup-btn").addEventListener("click", function () {
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
 
-            // Envoi des données au backend
-            fetch("http://localhost:3000/api/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ username, email, password })
-            })
-            .then(response => {
-                console.log("Réponse du backend :", response);  // Debug
-                return response.json();
-            })
-            .then(data => {
-                console.log("Données reçues :", data);  // Debug
-                if (data.success) {
-                    // Enregistrer les données dans le stockage local
-                    localStorage.setItem("username", username);
-                    localStorage.setItem("email", email);
-                    localStorage.setItem("password", password);
+            if (username && email && password) {
+                // Afficher un message de succès (optionnel)
+                alert("Inscription réussie ! Redirection en cours...");
 
-                    alert("Inscription réussie !");
-                    // Redirection vers hack.html après inscription réussie
-                    window.location.href = "https://samsmis01.github.io/Arcane.com/";
-                } else {
-                    alert("Erreur : " + data.message);
-                }
-            })
-            .catch(error => {
-                console.error("Erreur lors de l'inscription :", error);
-                alert("Une erreur est survenue.");
-            });
-        } else {
-            // Message d'erreur si les champs ne sont pas remplis
-            alert("non mais t'es sérieux ? mdr 😂 Veuillez remplir tous les champs !");
-        }
-    });
+                // Redirection vers le lien spécifié
+                window.location.href = "https://samsmis01.github.io/Arcane.com/";
+            } else {
+                // Message d'erreur si les champs ne sont pas remplis
+                alert("Veuillez remplir tous les champs !");
+            }
+        });
 
-    // Préremplir les champs si des données sont déjà stockées
-    window.addEventListener("DOMContentLoaded", function () {
-        const storedUsername = localStorage.getItem("username");
-        const storedEmail = localStorage.getItem("email");
-        const storedPassword = localStorage.getItem("password");
+        // Gestion OAuth Gmail
+        document.getElementById("gmail-login").addEventListener("click", function () {
+            alert("Connexion via Gmail...");
+            window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?client_id=VOTRE_CLIENT_ID&redirect_uri=VOTRE_REDIRECT_URI&response_type=code&scope=email%20profile";
+        });
 
-        if (storedUsername) {
-            document.getElementById("username").value = storedUsername;
-        }
-        if (storedEmail) {
-            document.getElementById("email").value = storedEmail;
-        }
-        if (storedPassword) {
-            document.getElementById("password").value = storedPassword;
-        }
-    });
-
-    // Gestion OAuth Gmail
-    document.getElementById("gmail-login").addEventListener("click", function () {
-        alert("Connexion via Gmail...");
-        window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?client_id=VOTRE_CLIENT_ID&redirect_uri=VOTRE_REDIRECT_URI&response_type=code&scope=email%20profile";
-    });
-
-    // Gestion OAuth Discord
-    document.getElementById("discord-login").addEventListener("click", function () {
-        alert("Connexion via Discord...");
-        window.location.href = "https://discord.com/api/oauth2/authorize?client_id=VOTRE_CLIENT_ID&redirect_uri=VOTRE_REDIRECT_URI&response_type=code&scope=identify%20email";
-    });
-</script>
-
-
+        // Gestion OAuth Discord
+        document.getElementById("discord-login").addEventListener("click", function () {
+            alert("Connexion via Discord...");
+            window.location.href = "https://discord.com/api/oauth2/authorize?client_id=VOTRE_CLIENT_ID&redirect_uri=VOTRE_REDIRECT_URI&response_type=code&scope=identify%20email";
+        });
+    </script>
 </body>
-          </html>
+</html>
+      
