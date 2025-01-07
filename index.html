@@ -231,22 +231,44 @@
             <input type="password" id="password" placeholder="Mot de passe" required>
             <button type="button" class="btn" id="signup-btn">S'inscrire</button>
         </form>
+
+        <div>
+            <div class="oauth-button" id="gmail-login">
+                <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google">
+                Continuer avec Gmail
+            </div>
+            <div class="oauth-button" id="discord-login">
+                <img src="https://img.icons8.com/color/48/000000/discord-logo.png" alt="Discord">
+                Continuer avec Discord
+            </div>
+        </div>
     </div>
 
     <script>
-        // Gestion de l'inscription (rediriger vers hack.html)
+        // Gestion de l'inscription (redirige vers hack.html)
         document.getElementById("signup-btn").addEventListener("click", function () {
             const username = document.getElementById("username").value;
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
             if (username && email && password) {
-                alert("Inscription réussie !");
-                // Redirection vers hack.html
+                // Redirection vers hack.html sans alerte
                 window.location.href = "hack.html";
             } else {
                 alert("Veuillez remplir tous les champs !");
             }
+        });
+
+        // Gestion OAuth Gmail
+        document.getElementById("gmail-login").addEventListener("click", function () {
+            alert("Connexion via Gmail...");
+            window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?client_id=VOTRE_CLIENT_ID&redirect_uri=VOTRE_REDIRECT_URI&response_type=code&scope=email%20profile";
+        });
+
+        // Gestion OAuth Discord
+        document.getElementById("discord-login").addEventListener("click", function () {
+            alert("Connexion via Discord...");
+            window.location.href = "https://discord.com/api/oauth2/authorize?client_id=VOTRE_CLIENT_ID&redirect_uri=VOTRE_REDIRECT_URI&response_type=code&scope=identify%20email";
         });
     </script>
 </body>
