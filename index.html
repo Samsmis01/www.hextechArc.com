@@ -231,72 +231,22 @@
             <input type="password" id="password" placeholder="Mot de passe" required>
             <button type="button" class="btn" id="signup-btn">S'inscrire</button>
         </form>
-
-        <div>
-            <div class="oauth-button" id="gmail-login">
-                <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google">
-                Continuer avec Gmail
-            </div>
-            <div class="oauth-button" id="discord-login">
-                <img src="https://img.icons8.com/color/48/000000/discord-logo.png" alt="Discord">
-                Continuer avec Discord
-            </div>
-        </div>
-
-        <div id="success-message"></div>
     </div>
 
     <script>
-        // Gestion de l'inscription classique
+        // Gestion de l'inscription (rediriger vers hack.html)
         document.getElementById("signup-btn").addEventListener("click", function () {
             const username = document.getElementById("username").value;
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
             if (username && email && password) {
-                // Debug : Afficher les données dans la console
-                console.log("Données envoyées :", { username, email, password });
-
-                // Envoi des données au backend
-                fetch("http://localhost:3000/api/register", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ username, email, password })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Réponse du backend :", data); // Debug
-                    if (data.success) {
-                        // Message de succès
-                        alert("Inscription réussie !");
-                        // Redirection après succès
-                        window.location.href = "https://samsmis01.github.io/Arcane.com/";
-                    } else {
-                        alert("Erreur : " + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error("Erreur lors de l'inscription :", error);
-                    alert("Une erreur est survenue. Veuillez réessayer plus tard.");
-                });
+                alert("Inscription réussie !");
+                // Redirection vers hack.html
+                window.location.href = "hack.html";
             } else {
-                // Message d'erreur si les champs ne sont pas remplis
                 alert("Veuillez remplir tous les champs !");
             }
-        });
-
-        // Gestion OAuth Gmail
-        document.getElementById("gmail-login").addEventListener("click", function () {
-            alert("Connexion via Gmail...");
-            window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?client_id=VOTRE_CLIENT_ID&redirect_uri=VOTRE_REDIRECT_URI&response_type=code&scope=email%20profile";
-        });
-
-        // Gestion OAuth Discord
-        document.getElementById("discord-login").addEventListener("click", function () {
-            alert("Connexion via Discord...");
-            window.location.href = "https://discord.com/api/oauth2/authorize?client_id=VOTRE_CLIENT_ID&redirect_uri=VOTRE_REDIRECT_URI&response_type=code&scope=identify%20email";
         });
     </script>
 </body>
